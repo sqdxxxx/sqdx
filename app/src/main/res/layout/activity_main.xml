@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+
+    </data>
+
+    <com.example.music_zsz.CustomSwipeRefreshLayout
+        android:id="@+id/swipeRefreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <LinearLayout
+                android:id="@+id/searchBar"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="8dp"
+                android:gravity="center_vertical"
+                android:background="#EEEEEE"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@android:drawable/ic_menu_search" />
+
+
+                <EditText
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_weight="1"
+                    android:hint="一直很安静"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/viewPager"
+                android:layout_width="0dp"
+                android:layout_height="120dp"
+                android:clipToPadding="false"
+                android:padding="8dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintTop_toBottomOf="@id/searchBar"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+
+            <TextView
+                android:id="@+id/specialSongsTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="专属好歌"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintTop_toBottomOf="@id/viewPager"
+                app:layout_constraintStart_toStartOf="parent" />
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/horizontalRecyclerView"
+                android:layout_width="0dp"
+                android:layout_height="150dp"
+                android:padding="8dp"
+                android:orientation="horizontal"
+                android:layout_marginTop="4dp"
+                app:layout_constraintTop_toBottomOf="@id/specialSongsTitle"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+
+            <TextView
+                android:id="@+id/dailyRecommendationTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="每日推荐"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintTop_toBottomOf="@id/horizontalRecyclerView"
+                app:layout_constraintStart_toStartOf="parent" />
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/dailyRecyclerView"
+                android:layout_width="0dp"
+                android:layout_height="170dp"
+                android:padding="8dp"
+                app:layout_constraintTop_toBottomOf="@id/dailyRecommendationTitle"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+
+            <TextView
+                android:id="@+id/popularSongsTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="热门金曲"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintTop_toBottomOf="@id/dailyRecyclerView"
+                app:layout_constraintStart_toStartOf="parent" />
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/popularRecyclerView"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:padding="8dp"
+                app:layout_constraintTop_toBottomOf="@id/popularSongsTitle"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.example.music_zsz.CustomSwipeRefreshLayout>
+</layout>
