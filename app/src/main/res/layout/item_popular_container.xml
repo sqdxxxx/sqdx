@@ -1,27 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
-    <data>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
-    </data>
     <LinearLayout
-        android:id="@+id/popularModuleRoot"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="8dp">
+        android:orientation="vertical">
 
         <TextView
-            android:id="@+id/popularModuleTitle"
+            android:id="@+id/popularSongsTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="热门金曲"
             android:textSize="18sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:layout_marginStart="8dp"/>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/popularModuleRecyclerView"
+            android:id="@+id/popularRecyclerView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:overScrollMode="never" />
+            android:layout_height="wrap_content" />
     </LinearLayout>
 </layout>

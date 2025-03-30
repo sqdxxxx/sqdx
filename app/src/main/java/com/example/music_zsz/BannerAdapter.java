@@ -5,6 +5,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
@@ -33,6 +35,14 @@ public class BannerAdapter extends RecyclerView.Adapter<BannerAdapter.BannerView
                 .load(song.getCoverUrl())
                 .error(R.drawable.ic_02)
                 .into(holder.imageView);
+        holder.itemView.setOnClickListener(v -> {
+            SongRepository.getInstance().addSong(song);
+            Toast.makeText(
+                    v.getContext(),
+                    "将 " + song.getName() + " 添加到音乐列表",
+                    Toast.LENGTH_SHORT
+            ).show();
+        });
     }
 
     @Override

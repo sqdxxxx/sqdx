@@ -13,31 +13,48 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class PrivacyActivity extends AppCompatActivity {
 
-    private TextView tvContent;
+    private TextView dialogTvContent;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_privacy);
+        setContentView(R.layout.activity_splash);
+        showPrivacyDialog();
+    }
+
+    private void showPrivacyDialog() {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
 
-         tvContent = findViewById(R.id.tv_content);
-        Button btnDisagree = findViewById(R.id.btn_disagree);
-        Button btnAgree = findViewById(R.id.btn_agree);
+        View dialogView = getLayoutInflater().inflate(R.layout.activity_privacy, null);
+        builder.setView(dialogView);
 
 
-        setupClickableText(tvContent);
+        AlertDialog dialog = builder.create();
+        dialog.setCanceledOnTouchOutside(false);
+
+
+        dialogTvContent = dialogView.findViewById(R.id.tv_content);
+        Button btnDisagree = dialogView.findViewById(R.id.btn_disagree);
+        Button btnAgree = dialogView.findViewById(R.id.btn_agree);
+        setupClickableText(dialogTvContent);
 
 
         btnDisagree.setOnClickListener(v -> finishAffinity());
         btnAgree.setOnClickListener(v -> navigateToMain());
+
+
+        dialog.show();
     }
 
     private void setupClickableText(TextView textView) {
-        String fullText = tvContent.getText().toString();
+        String fullText = dialogTvContent.getText().toString();
         SpannableString spannableString = new SpannableString(fullText);
 
 

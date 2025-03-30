@@ -29,7 +29,7 @@ public class ParseGson {
             for (int i = 0; i < records.length(); i++) {
                 JSONObject record = records.getJSONObject(i);
 
-                int moduleConfigId = record.getInt("moduleConfigId");
+                int style = record.getInt("style");
 
                 if (record.has("musicInfoList")) {
                     JSONArray musicInfoList = record.getJSONArray("musicInfoList");
@@ -38,8 +38,10 @@ public class ParseGson {
                         String name = songObj.getString("musicName");
                         String singer = songObj.getString("author");
                         String coverUrl = songObj.getString("coverUrl");
-                        Log.d("ParseGson", "music: " + name + ", moduleConfigId: " + moduleConfigId);
-                        Song song = new Song(name, singer, coverUrl, moduleConfigId);
+                        String musicUrl = songObj.getString("musicUrl");
+                        String lyricUrl = songObj.getString("lyricUrl");
+                        Log.d("ParseGson", "music: " + name + ", style: " + style);
+                        Song song = new Song(name, singer, coverUrl, musicUrl, lyricUrl, style);
                         songs.add(song);
                     }
                 }

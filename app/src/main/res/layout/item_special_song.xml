@@ -11,12 +11,12 @@
         app:cardPreventCornerOverlap="true"
         app:cardElevation="4dp">
 
-        <!-- FrameLayout 用来叠放图片和文字覆盖 -->
+
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <!-- 封面图 -->
+
             <ImageView
                 android:id="@+id/coverImageView"
                 android:layout_width="match_parent"

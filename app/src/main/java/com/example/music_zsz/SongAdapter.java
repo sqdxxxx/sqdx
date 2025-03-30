@@ -1,5 +1,7 @@
 package com.example.music_zsz;
 
+import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,15 +12,20 @@ import android.widget.Toast;
 
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentActivity;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class SongAdapter extends RecyclerView.Adapter<SongAdapter.SongViewHolder> {
 
     private List<Song> songs;
+    private MainViewModel viewModel;
+    private ArrayList<Song> songWaitingToPlay;
     private int layoutId; // 用于区分不同布局
 
     public SongAdapter(List<Song> songs, @LayoutRes int layoutId) {
@@ -51,6 +58,8 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.SongViewHolder
 
 
         holder.playImageView.setOnClickListener(v -> {
+            //当你点击了封面，就会使用这个单例把数据传到musicactivity里面，我一开始想使用viewmodel，但是好像因为这个SongAdapter是和mainactivity绑定的，导致我创建的viewmodel也和它绑定了，而不是和musicactivity绑定
+            SongRepository.getInstance().addSong(song);
             Toast.makeText(
                     v.getContext(),
                     "将 " + song.getName() + " 添加到音乐列表",
@@ -60,6 +69,10 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.SongViewHolder
 
 
         holder.itemView.setOnClickListener(v -> {
+            Context context = v.getContext();
+            Intent intent = new Intent(context, MusicPlayerActivity.class);
+            intent.putExtra("song", song);
+            context.startActivity(intent);
             Toast.makeText(
                     v.getContext(),
                     song.getName(),

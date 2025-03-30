@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_music_player"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPager"
+        android:layout_width="0dp"
+        android:layout_height="350dp"
+        android:layout_marginTop="70dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <ImageView
+        android:id="@+id/close"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/ic_close"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.959"
+        app:layout_constraintStart_toStartOf="@id/viewPager"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/songNameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="到此为止"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.023"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/viewPager" />
+
+    <TextView
+        android:id="@+id/singerTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="徐佳莹"
+        android:textColor="@android:color/white"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.043"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/songNameTextView" />
+
+
+
+
+
+    <ImageView
+        android:id="@+id/likeImageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="20dp"
+        android:src="@drawable/ic_like"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/songNameTextView" />
+
+    <TextView
+        android:id="@+id/tvCurrentTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="4dp"
+        android:text="00:00"
+        android:textColor="@android:color/white"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toTopOf="@id/seekBar"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tvTotalTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="05:45"
+        android:textColor="@android:color/white"
+        android:textSize="12sp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="4dp"
+        app:layout_constraintBottom_toTopOf="@id/seekBar"
+        app:layout_constraintEnd_toEndOf="parent"
+            />
+
+
+
+
+
+    <SeekBar
+        android:id="@+id/seekBar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="52dp"
+        app:layout_constraintBottom_toTopOf="@+id/layout_controls"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/layout_controls"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="88dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageView
+            android:id="@+id/playModel"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:layout_marginEnd="60dp"
+            android:src="@drawable/ic_play01" />
+
+        <ImageView
+            android:id="@+id/prevImageView"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:src="@drawable/ic_back" />
+
+
+        <ImageView
+            android:id="@+id/playPauseImageView"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:src="@drawable/ic_pause" />
+
+
+        <ImageView
+            android:id="@+id/nextImageView"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:src="@drawable/ic_next" />
+
+        <ImageView
+            android:id="@+id/itemlist"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:layout_marginStart="60dp"
+            android:src="@drawable/ic_list" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

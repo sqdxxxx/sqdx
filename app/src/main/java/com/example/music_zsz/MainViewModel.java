@@ -11,6 +11,8 @@ public class MainViewModel extends ViewModel {
     private MutableLiveData<List<Song>> dailySongs;
     private MutableLiveData<List<Song>> popularSongs;
 
+    private final MutableLiveData<List<Song>> playlistLiveData = new MutableLiveData<>(new ArrayList<>());
+
     public MainViewModel() {
         specialSongs = new MutableLiveData<>();
         dailySongs = new MutableLiveData<>();
@@ -31,6 +33,20 @@ public class MainViewModel extends ViewModel {
         List<Song> popular = new ArrayList<>();
 
         popularSongs.setValue(popular);
+    }
+
+    public LiveData<List<Song>> getPlaylist() {
+        return playlistLiveData;
+    }
+
+
+    public void addSong(Song song) {
+        List<Song> list = playlistLiveData.getValue();
+        if (list == null) {
+            list = new ArrayList<>();
+        }
+        list.add(song);
+        playlistLiveData.setValue(list);
     }
 
     public LiveData<List<Song>> getSpecialSongs() {
