@@ -12,7 +12,7 @@ import java.util.List;
 public class LyricAdapter extends RecyclerView.Adapter<LyricAdapter.ViewHolder> {
 
     private List<LyricLine> lyricLines;
-    private int selectedIndex = 0; // 当前选中歌词行
+    private int selectedIndex = 0; 
 
     public LyricAdapter(List<LyricLine> lyricLines) {
         this.lyricLines = lyricLines;
@@ -38,7 +38,7 @@ public class LyricAdapter extends RecyclerView.Adapter<LyricAdapter.ViewHolder> 
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         LyricLine line = lyricLines.get(position);
         holder.lyricTextView.setText(line.text);
-        // 如果是当前行，则高亮显示
+       
         if (position == selectedIndex) {
             holder.lyricTextView.setTextColor(Color.WHITE);
             holder.lyricTextView.setTextSize(20);
@@ -61,9 +61,9 @@ public class LyricAdapter extends RecyclerView.Adapter<LyricAdapter.ViewHolder> 
         }
     }
 
-    // 用于存储每行歌词数据的 POJO 类
+   
     public static class LyricLine {
-        public int time; // 毫秒
+        public int time; 
         public String text;
         public LyricLine(int time, String text) {
             this.time = time;
