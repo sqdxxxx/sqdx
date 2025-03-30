@@ -11,6 +11,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.LinearSmoothScroller;
+import androidx.recyclerview.widget.LinearSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -38,11 +40,13 @@ public class LyricFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_lyric, container, false);
         lyricRecyclerView = view.findViewById(R.id.lyricRecyclerView);
-        lyricRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        lyricRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
         lyricAdapter = new LyricAdapter(lyricLines);
         lyricRecyclerView.setAdapter(lyricAdapter);
+        LinearSnapHelper snapHelper = new LinearSnapHelper();
+        snapHelper.attachToRecyclerView(lyricRecyclerView);
 
-    
+
         SongRepository.getInstance().getCurrentSong().observe(getViewLifecycleOwner(), song -> {
             if (song != null) {
                 String lyricUrl = song.getLyricUrl();
@@ -56,6 +60,22 @@ public class LyricFragment extends Fragment {
         });
         return view;
     }
+
+
+    private void smoothScrollToCenter(int position) {
+        RecyclerView.SmoothScroller smoothScroller = new LinearSmoothScroller(getContext()) {
+            @Override
+            public int calculateDtToFit(int viewStart, int viewEnd, int boxStart, int boxEnd, int snapPreference) {
+                // 计算 item 的中心与 RecyclerView 中心的差距,
+                int boxCenter = (boxStart + boxEnd) / 2;
+                int viewCenter = (viewStart + viewEnd) / 2;
+                return boxCenter - viewCenter;
+            }
+        };
+        smoothScroller.setTargetPosition(position);
+        lyricRecyclerView.getLayoutManager().startSmoothScroll(smoothScroller);
+    }
+
 
 
     private void fetchLyrics(String url) {
@@ -146,9 +166,9 @@ public class LyricFragment extends Fragment {
                         if (currentIndex != lyricAdapter.getSelectedIndex()) {
                             lyricAdapter.setSelectedIndex(currentIndex);
                             lyricAdapter.notifyDataSetChanged();
-                           
-                            lyricRecyclerView.smoothScrollToPosition(currentIndex);
+                            smoothScrollToCenter(currentIndex);
                         }
+
                     }
                 }
                 lyricHandler.postDelayed(this, 500);
