@@ -104,7 +104,6 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.SongViewHolder
 
                     musicService.setSongList(newPlaylist);
 
-
                     int index = findIndexInList(song, newPlaylist);
 
                     musicService.playSongAt(index);
@@ -112,7 +111,6 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.SongViewHolder
             }
 
             Intent intent = new Intent(context, MusicPlayerActivity.class);
-
 
 
             context.startActivity(intent);

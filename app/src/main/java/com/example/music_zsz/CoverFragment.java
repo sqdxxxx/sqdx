@@ -74,15 +74,12 @@ public class CoverFragment extends Fragment {
         animator.start();
     }
 
-    public void pauseAnimation() {
-        if (animator != null && animator.isRunning()) {
-            animator.pause();
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        if (animator != null) {
+            animator.cancel();
         }
     }
 
-    public void resumeAnimation() {
-        if (animator != null && animator.isPaused()) {
-            animator.resume();
-        }
-    }
 }
